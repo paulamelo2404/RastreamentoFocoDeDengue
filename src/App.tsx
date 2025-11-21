@@ -1,34 +1,53 @@
-// src/App.tsx
+// src/App.tsx (Novo Conteúdo Completo para Roteamento)
 
 import React, { useEffect } from 'react';
-import FocoForm from './components/FocoForm';
-import FocoList from './components/FocoList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DataStoreService } from './services/DataStoreService';
 
+// Importações dos novos componentes de layout e páginas
+import Navbar from './components/Navbar'; 
+import Home from './pages/Home';         
+import Registro from './pages/Registro'; 
+
+// Importações removidas, pois os componentes agora estão dentro da página Registro.tsx
+// import FocoForm from './components/FocoForm'; 
+// import FocoList from './components/FocoList'; 
+
+// Use export default para o App funcionar como o componente raiz
 export default function App() {
+  
+  // Efeito para inicializar o LocalStorage com dados mockados
   useEffect(() => {
     DataStoreService.initMockData();
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-200 p-6">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-6 p-4 bg-white rounded-xl shadow flex items-center justify-between">
-          <h1 className="text-2xl md:text-3xl font-extrabold text-red-800">
-            Sistema de Mapeamento de Dengue - MVP
-          </h1>
-          <span className="text-xs md:text-sm text-green-700 font-semibold">
-            React montado com sucesso
-          </span>
-        </div>
+    // O Router deve envolver toda a aplicação
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        
+        {/* Componente de Navegação (Navbar Moderna) */}
+        <Navbar />
 
-        <FocoForm />
-        <FocoList />
+        {/* Área principal do conteúdo que mudará conforme a rota */}
+        <main className="max-w-6xl mx-auto p-4">
+          <Routes>
+            
+            {/* Rota Raiz: Visão Geral e Mapeamento (Home.tsx) */}
+            <Route path="/" element={<Home />} />
+            
+            {/* Rota de Registro: Formulário e Lista (Registro.tsx) */}
+            <Route path="/registro" element={<Registro />} />
+            
+            {/* Rota de fallback */}
+            <Route path="*" element={<Home />} /> 
+          </Routes>
+        </main>
 
-        <p className="text-center text-xs text-gray-500 mt-10">
-          MVP em Front-end. Persistência de dados simulada via LocalStorage.
-        </p>
+        <footer className="text-center text-xs text-gray-500 py-4 mt-8 border-t">
+            MVP em Front-end. Persistência de dados simulada via LocalStorage.
+        </footer>
       </div>
-    </div>
+    </Router>
   );
 }
