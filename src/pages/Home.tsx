@@ -2,199 +2,256 @@
 import React from 'react';
 
 const Home: React.FC = () => {
-  // Dados mock para estatísticas - serão substituídos pelos serviços reais depois
+  // Dados mock para estatísticas - agora com escopo nacional
   const estatisticasMock = {
-    focosAtivos: 12,
-    casosSuspeitos: 8,
-    areasMonitoradas: 5,
-    agentesAtivos: 3
+    focosMapeados: "2.4K",
+    municipiosAtivos: 127,
+    agentesCadastrados: "1.2K",
+    denunciasRecebidas: "8.7K"
   };
 
-  const alertasRecentes = [
-    { tipo: 'alto', local: 'Rua Maria Cândida', descricao: 'Múltiplos focos identificados' },
-    { tipo: 'medio', local: 'Vila Natal', descricao: 'Caso suspeito em investigação' },
-    { tipo: 'baixo', local: 'Jardim São Jorge', descricao: 'Prevenção em andamento' }
+  const prevencoes = [
+    {
+      icone: "💧",
+      titulo: "Elimine Água Parada",
+      descricao: "Vasos, pneus e garrafas podem ser criadouros do mosquito."
+    },
+    {
+      icone: "🛢️",
+      titulo: "Tampe Reservatórios", 
+      descricao: "Caixas d'água, tonéis e barris devem estar bem fechados."
+    },
+    {
+      icone: "🧹",
+      titulo: "Mantenha Limpo",
+      descricao: "Limpe calhas e lajes regularmente para evitar acúmulo."
+    },
+    {
+      icone: "🚮",
+      titulo: "Descarte Correto",
+      descricao: "Destine o lixo adequadamente e evite recipientes abertos."
+    }
+  ];
+
+  const dadosDengue = [
+    { numero: "390K+", descricao: "Casos registrados no Brasil em 2024" },
+    { numero: "150+", descricao: "Óbitos confirmados este ano" },
+    { numero: "80%", descricao: "Casos concentrados em SP, MG e PR" }
+  ];
+
+  const estadosAtuacao = [
+    "São Paulo", "Minas Gerais", "Paraná", "Rio de Janeiro", "Bahia",
+    "Santa Catarina", "Goiás", "Ceará", "Pernambuco", "Rio Grande do Sul"
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#FCECF7] to-[#F5D8EC] py-6 px-4 sm:px-6 lg:px-8">
-      {/* Header */}
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl sm:text-5xl font-bold text-[#5D3C77] mb-4">
-            🦟 DengueTracker
-          </h1>
-          <p className="text-xl text-[#7A5C93] max-w-2xl mx-auto">
-            Sistema de monitoramento e combate à dengue no Jardim Ângela
+        {/* Header com Logo */}
+        <div className="text-center mb-12">
+          <div className="flex justify-center items-center gap-4 mb-6">
+            <img 
+              src="https://i.imgur.com/hBsZGRA.png" 
+              alt="Em Foco - Combate à Dengue"
+              className="h-16 sm:h-20"
+            />
+            <div className="text-left">
+              <h1 className="text-4xl sm:text-5xl font-bold text-[#0593A2]"></h1>
+              <p className="text-lg text-gray-600">Sistema Nacional de Combate à Dengue</p>
+            </div>
+          </div>
+
+          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm border border-blue-100 mb-6">
+            <div className="w-3 h-3 bg-[#E50700] rounded-full animate-pulse"></div>
+            <span className="text-sm font-semibold text-gray-700">Monitoramento Ativo em Todo Brasil</span>
+          </div>
+          
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Plataforma integrada de mapeamento e combate ao <strong>Aedes aegypti</strong> em 
+            território nacional. Sua contribuição salva vidas.
           </p>
         </div>
 
-        {/* Cartões de Estatísticas */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {/* Focos Ativos */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-red-500 hover:shadow-xl transition-shadow">
+        {/* Cartões de Impacto Nacional */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-600">Focos Ativos</p>
-                <p className="text-3xl font-bold text-red-600">{estatisticasMock.focosAtivos}</p>
+                <p className="text-sm font-semibold text-gray-600">Focos Mapeados</p>
+                <p className="text-3xl font-bold text-[#0593A2]">{estatisticasMock.focosMapeados}</p>
               </div>
-              <div className="text-3xl">🔴</div>
+              <div className="w-8 h-8 bg-[#0593A2] rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">M</span>
+              </div>
             </div>
             <div className="mt-2 text-xs text-gray-500">
-              Necessitam de ação imediata
+              Em todo território nacional
             </div>
           </div>
 
-          {/* Casos Suspeitos */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-yellow-500 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-600">Casos Suspeitos</p>
-                <p className="text-3xl font-bold text-yellow-600">{estatisticasMock.casosSuspeitos}</p>
+                <p className="text-sm font-semibold text-gray-600">Municípios Ativos</p>
+                <p className="text-3xl font-bold text-[#0593A2]">{estatisticasMock.municipiosAtivos}</p>
               </div>
-              <div className="text-3xl">🟡</div>
+              <div className="w-8 h-8 bg-[#0593A2] rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">C</span>
+              </div>
             </div>
             <div className="mt-2 text-xs text-gray-500">
-              Em monitoramento
+              Utilizando a plataforma
             </div>
           </div>
 
-          {/* Áreas Monitoradas */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-blue-500 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-600">Áreas Monitoradas</p>
-                <p className="text-3xl font-bold text-blue-600">{estatisticasMock.areasMonitoradas}</p>
+                <p className="text-sm font-semibold text-gray-600">Agentes Cadastrados</p>
+                <p className="text-3xl font-bold text-[#0593A2]">{estatisticasMock.agentesCadastrados}</p>
               </div>
-              <div className="text-3xl">🗺️</div>
+              <div className="w-8 h-8 bg-[#0593A2] rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">A</span>
+              </div>
             </div>
             <div className="mt-2 text-xs text-gray-500">
-              Setores do Jardim Ângela
+              Trabalhando pelo Brasil
             </div>
           </div>
 
-          {/* Agentes Ativos */}
-          <div className="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-green-500 hover:shadow-xl transition-shadow">
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-semibold text-gray-600">Agentes Ativos</p>
-                <p className="text-3xl font-bold text-green-600">{estatisticasMock.agentesAtivos}</p>
+                <p className="text-sm font-semibold text-gray-600">Denúncias Recebidas</p>
+                <p className="text-3xl font-bold text-[#0593A2]">{estatisticasMock.denunciasRecebidas}</p>
               </div>
-              <div className="text-3xl">👨‍⚕️</div>
+              <div className="w-8 h-8 bg-[#0593A2] rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">D</span>
+              </div>
             </div>
             <div className="mt-2 text-xs text-gray-500">
-              Em campo agora
+              Pela população
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Mapa - Área Principal */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#FCECF7]">
-              <div className="flex items-center justify-between mb-6">
-                <h2 className="text-2xl font-bold text-[#5D3C77]">
-                  🗺️ Mapa de Focos - Jardim Ângela
-                </h2>
-                <span className="text-sm bg-[#FCECF7] text-[#5D3C77] px-3 py-1 rounded-full">
-                  Tempo Real
-                </span>
-              </div>
-              
-              {/* Área do Mapa */}
-              <div className="w-full h-96 bg-gradient-to-br from-[#FCECF7] to-[#F5D8EC] flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-[#5D3C77]">
-                <div className="text-4xl mb-4">🗺️</div>
-                <p className="text-[#5D3C77] font-semibold text-center">
-                  Mapa Interativo em Desenvolvimento
-                </p>
-                <p className="text-[#7A5C93] text-sm text-center mt-2">
-                  Visualização geográfica dos focos ativos e casos suspeitos
-                </p>
-              </div>
-
-              {/* Legenda do Mapa */}
-              <div className="mt-4 flex flex-wrap gap-4 justify-center">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <span className="text-sm text-gray-600">Foco Ativo</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          {/* Seção de Prevenção */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#0593A2] mb-8 border-b pb-2">
+              Medidas de Prevenção
+            </h2>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {prevencoes.map((prevencao, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-xl p-5 shadow-md border border-blue-50 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-10 h-10 bg-[#0593A2] rounded-lg flex items-center justify-center text-white font-bold mb-3">
+                    {index + 1}
+                  </div>
+                  <h3 className="font-semibold text-gray-800 mb-2">{prevencao.titulo}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{prevencao.descricao}</p>
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <span className="text-sm text-gray-600">Caso Suspeito</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <span className="text-sm text-gray-600">Área Monitorada</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Sidebar - Alertas e Ações Rápidas */}
-          <div className="space-y-6">
-            {/* Alertas Recentes */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#FCECF7]">
-              <h3 className="text-xl font-bold text-[#5D3C77] mb-4 flex items-center gap-2">
-                ⚡ Alertas Recentes
-              </h3>
-              
-              <div className="space-y-3">
-                {alertasRecentes.map((alerta, index) => (
-                  <div 
-                    key={index}
-                    className={`p-3 rounded-lg border-l-4 ${
-                      alerta.tipo === 'alto' ? 'border-red-500 bg-red-50' :
-                      alerta.tipo === 'medio' ? 'border-yellow-500 bg-yellow-50' :
-                      'border-green-500 bg-green-50'
-                    }`}
-                  >
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="font-semibold text-gray-800">{alerta.local}</p>
-                        <p className="text-sm text-gray-600">{alerta.descricao}</p>
-                      </div>
-                      <span className={`text-xs px-2 py-1 rounded-full ${
-                        alerta.tipo === 'alto' ? 'bg-red-100 text-red-800' :
-                        alerta.tipo === 'medio' ? 'bg-yellow-100 text-yellow-800' :
-                        'bg-green-100 text-green-800'
-                      }`}>
-                        {alerta.tipo === 'alto' ? 'Alto' : alerta.tipo === 'medio' ? 'Médio' : 'Baixo'}
-                      </span>
-                    </div>
+          {/* Dados Nacionais e Estados */}
+          <div>
+            <h2 className="text-3xl font-bold text-[#E50700] mb-8 border-b pb-2">
+              Situação Nacional
+            </h2>
+            
+            <div className="space-y-4 mb-6">
+              {dadosDengue.map((dado, index) => (
+                <div 
+                  key={index}
+                  className="bg-gradient-to-r from-[#0593A2] to-[#057A93] rounded-xl p-5 text-white shadow-lg"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="text-2xl font-bold">{dado.numero}</div>
+                    <div className="text-sm opacity-90 flex-1">{dado.descricao}</div>
                   </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Estados com Atuação */}
+            <div className="bg-white rounded-xl p-5 shadow-md border border-blue-50">
+              <h3 className="font-semibold text-[#0593A2] mb-3">Estados com Monitoramento Ativo</h3>
+              <div className="flex flex-wrap gap-2">
+                {estadosAtuacao.map((estado, index) => (
+                  <span 
+                    key={index}
+                    className="bg-[#0593A2] text-white text-xs px-3 py-1 rounded-full"
+                  >
+                    {estado}
+                  </span>
                 ))}
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Ações Rápidas */}
-            <div className="bg-white rounded-2xl p-6 shadow-lg border border-[#FCECF7]">
-              <h3 className="text-xl font-bold text-[#5D3C77] mb-4 flex items-center gap-2">
-                🚀 Ações Rápidas
-              </h3>
-              
-              <div className="space-y-3">
-                <button className="w-full bg-[#5D3C77] hover:bg-[#4A2F5F] text-white py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
-                  📍 Registrar Novo Foco
-                </button>
-                <button className="w-full bg-[#FCECF7] hover:bg-[#F5D8EC] text-[#5D3C77] py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 border border-[#5D3C77]">
-                  📊 Gerar Relatório
-                </button>
-                <button className="w-full bg-[#FCECF7] hover:bg-[#F5D8EC] text-[#5D3C77] py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 border border-[#5D3C77]">
-                  👥 Ver Agentes
-                </button>
-              </div>
-            </div>
+        {/* Call to Action Principal */}
+        <div className="bg-gradient-to-r from-[#0593A2] to-[#E50700] rounded-2xl p-8 text-white text-center mb-12 shadow-xl">
+          <h2 className="text-3xl font-bold mb-4">Ajude a Combater a Dengue</h2>
+          <p className="text-lg mb-6 max-w-2xl mx-auto">
+            Cada denúncia pode prevenir dezenas de casos. Reporte focos do mosquito 
+            e proteja sua comunidade.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="bg-white text-[#E50700] font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition-colors text-lg">
+              Reportar Foco Agora
+            </button>
+            <button className="bg-transparent border-2 border-white text-white font-bold py-4 px-8 rounded-lg hover:bg-white/10 transition-colors text-lg">
+              Ver Mapa Nacional
+            </button>
+          </div>
+        </div>
 
-            {/* Dica de Prevenção */}
-            <div className="bg-gradient-to-r from-[#5D3C77] to-[#7A5C93] rounded-2xl p-6 text-white">
-              <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
-                💡 Dica de Prevenção
-              </h3>
-              <p className="text-sm opacity-90">
-                Elimine recipientes que acumulam água parada. 
-                Tampe caixas d'água e limpe calhas regularmente.
-              </p>
-            </div>
+        {/* Mapa Nacional Resumido */}
+        <div className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 mb-12">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-3xl font-bold text-[#0593A2]">
+              Cobertura Nacional
+            </h2>
+            <span className="text-sm bg-[#E50700] text-white px-4 py-2 rounded-full font-semibold">
+              Em Expansão Contínua
+            </span>
+          </div>
+          
+          <div className="w-full h-64 bg-gradient-to-br from-blue-50 to-cyan-100 rounded-xl border-2 border-dashed border-[#0593A2] flex flex-col items-center justify-center">
+            <div className="text-4xl mb-4 text-[#0593A2] font-bold">BR</div>
+            <p className="text-[#0593A2] font-semibold text-center text-lg">
+              Mapeamento Ativo em {estatisticasMock.municipiosAtivos} Municípios
+            </p>
+            <p className="text-gray-600 text-sm text-center mt-2 max-w-md">
+              Atuamos em todos os estados brasileiros identificando e combatendo 
+              focos do Aedes aegypti
+            </p>
+          </div>
+        </div>
+
+        {/* Footer Informativo */}
+        <div className="text-center py-8 border-t border-blue-200">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <img 
+              src="https://i.imgur.com/hBsZGRA.png" 
+              alt="Em Foco"
+              className="h-8"
+            />
+            <span className="text-xl font-bold text-[#0593A2]">Em Foco</span>
+          </div>
+          <p className="text-gray-600 mb-4">
+            <strong>Emergências de Saúde?</strong> Entre em contato com a Vigilância Sanitária do seu município
+          </p>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+            <span>Sistema 24/7</span>
+            <span>Cobertura Nacional</span>
+            <span>Totalmente Gratuito</span>
           </div>
         </div>
       </div>
