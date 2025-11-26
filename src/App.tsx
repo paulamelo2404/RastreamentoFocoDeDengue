@@ -1,5 +1,4 @@
-// src/App.tsx (Código Completo com Rotas, Navbar e Footer)
-
+// src/App.tsx
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DataStoreService } from './services/DataStoreService';
@@ -9,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';         
 import Registro from './pages/Registro'; 
+// import Municipios from './pages/Municipios'; // Descomente quando criar a página
 
 // Use export default para o App funcionar como o componente raiz
 export default function App() {
@@ -21,27 +21,30 @@ export default function App() {
   return (
     // O Router deve envolver toda a aplicação
     <Router>
-      <div className="min-h-screen flex flex-col bg-gray-100">
+      <div className="min-h-screen flex flex-col bg-gray-50">
         
         {/* Componente de Navegação (Navbar Moderna) */}
         <Navbar />
 
         {/* Área principal do conteúdo que cresce e muda conforme a rota */}
-        <main className="max-w-6xl mx-auto flex-grow w-full p-4">
+        <main className="flex-grow w-full">
           <Routes>
             
-            {/* Rota Raiz: Visão Geral e Mapeamento (Home.tsx) */}
+            {/* Rota Raiz: Home Geral com Apresentação */}
             <Route path="/" element={<Home />} />
             
-            {/* Rota de Registro: Formulário e Lista (Registro.tsx) */}
+            {/* Rota de Registro: Formulário e Lista de Focos */}
             <Route path="/registro" element={<Registro />} />
             
-            {/* Rota de fallback */}
+            {/* Rota de Municípios (Para implementar depois) */}
+            {/* <Route path="/municipios" element={<Municipios />} /> */}
+            
+            {/* Rota de fallback - Redireciona para Home */}
             <Route path="*" element={<Home />} /> 
           </Routes>
         </main>
 
-        {/* Componente de Rodapé Fixo */}
+        {/* Componente de Rodapé */}
         <Footer /> 
         
       </div>
